@@ -1,0 +1,17 @@
+dev.stefan.com, 0.0.0.0 {
+    tls off
+    proxy /v1 api:8080 {
+        transparent
+    }
+ }
+
+
+phpmyadmin.stefan.com {
+     tls off 
+
+     proxy / phpmyadmin:80 {
+         transparent
+     }
+ }
+
+

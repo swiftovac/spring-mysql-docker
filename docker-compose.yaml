@@ -1,0 +1,42 @@
+version: '3.7'
+
+services:
+  caddy:
+    image: abiosoft/caddy
+    volumes:
+      - ${PWD}/Caddyfile:/etc/Caddyfile
+    ports:
+      - 80:2015
+
+  db:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_DATABASE: dcloud_db
+      MYSQL_USER: stefan
+      MYSQL_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - db-data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+     - 9191:80
+    environment:
+      MYSQL_USERNAME: stefan
+      MYSQL_ROOT_PASSWORD: admin
+      PMA_HOST: db 
+
+
+  api:
+    image: registry.dcloud.rs/api:latest
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+
+volumes:
+  db-data:
