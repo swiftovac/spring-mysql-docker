@@ -7,7 +7,7 @@ sudo nano /etc/hosts
 
 Add:
 ```
-127.0.0.1	dev.stefan.com
+127.0.0.1	dev.stefan.com phpmyadmin.stefan.com
 ```
 
 ## Run
@@ -17,7 +17,7 @@ docker-compose up --build
 
 PhpMyAdminHost adress:
 ```
-localhost:9191
+phpmyadmin.stefan.com
 ```
 PortainerHost adress:
 ```
